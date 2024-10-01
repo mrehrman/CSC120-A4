@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Initializes the class Car. A Car holds Passengers.
+ */
 public class Car {
 
     //set attributes
@@ -7,22 +10,39 @@ public class Car {
     private int maxCapacity;
 
     //constructor
+    /**
+     * Creates instance of class Car.
+     * @param maxCapacity The max number of Passengers a Car can hold.
+     */
     public Car(int maxCapacity){
         this.maxCapacity = maxCapacity;
         this.passengers = new ArrayList<Passenger>(maxCapacity);
     }
 
     //methods
+    /**
+     * Accessor for a Car's maxCapacity.
+     * @return The Car's maxCapacity.
+     */
     public int getCapacity(){
         return this.maxCapacity;
     }
 
+    /**
+     * Determines how many more Passengers a Car can hold.
+     * @return The remaining number of seats in the Car.
+     */
     public int seatsRemaining(){
        int currentPassengers = passengers.size();
        int seats = maxCapacity - currentPassengers;
        return seats;
     }
 
+    /**
+     * Adds a Passenger to a Car if there are seats in the Car.
+     * @param p The Passenger to add to the car.
+     * @return True if there are seats remaining in the Car, False if there are no seats remaining.
+     */
     public Boolean addPassenger(Passenger p){
         if (this.seatsRemaining() > 0){
             this.passengers.add(p);
@@ -34,6 +54,11 @@ public class Car {
         }
     }
 
+    /**
+     * Removes a Passenger from a Car if they are in the Car.
+     * @param p The Passenger to remove from the car.
+     * @return True if the Passenger was in the Car and has been removed, false if the Passenger was not in the Car.
+     */
     public Boolean removePassenger(Passenger p){
         if (this.passengers.contains(p)){
             this.passengers.remove(p);
@@ -45,9 +70,11 @@ public class Car {
         }
     }
 
+    /**
+     * Prints a list of the names of the Passengers in a Car. 
+     */
     public void printManifest(){
         if (passengers.size() > 0){
-            System.out.println("Passengers:");
             for (int i = 0; i < passengers.size(); i++){
                 Passenger p = passengers.get(i); 
                 System.out.println(p.getName());
@@ -58,7 +85,10 @@ public class Car {
         }
     }
 
-
+    /**
+     * The main method runs elements of the Car class.
+     * @param args
+     */
     public static void main(String[] args) {
         Car myCar = new Car(2);
         Passenger person1 = new Passenger("Maddie");
